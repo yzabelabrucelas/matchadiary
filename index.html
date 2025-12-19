@@ -451,9 +451,20 @@
             });
 
             // ADMIN TRIGGER (DESKTOP)
+            // SAFER ADMIN TRIGGER
+            let inputBuffer = "";
+            const SECRET_WORD = "matcha";
+
             document.addEventListener("keydown", (e) => {
+                // Check if e.key exists before calling toLowerCase
+                if (!e || !e.key) return;
+
                 inputBuffer += e.key.toLowerCase();
-                if (inputBuffer.length > SECRET_WORD.length) inputBuffer = inputBuffer.substring(inputBuffer.length - SECRET_WORD.length);
+
+                if (inputBuffer.length > SECRET_WORD.length) {
+                    inputBuffer = inputBuffer.substring(inputBuffer.length - SECRET_WORD.length);
+                }
+
                 if (inputBuffer === SECRET_WORD) {
                     document.body.classList.add("admin-active");
                     alert("Admin Mode Activated!");
@@ -467,7 +478,7 @@
             brandBanner.addEventListener("touchstart", () => {
                 pressTimer = window.setTimeout(() => {
                     const password = prompt("Admin Secret:");
-                    if (password === "lush") {
+                    if (password === "matcha") {
                         document.body.classList.add("admin-active");
                         alert("Admin Mode Activated!");
                     }
