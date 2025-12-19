@@ -1,300 +1,331 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marie's Matcha Diaries</title>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Marie's Matcha Diaries</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link
+            href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap"
+            rel="stylesheet">
 
-    <style>
-        :root {
-            --heading-font: "Playfair Display", serif;
-            --body-font: "Plus Jakarta Sans", sans-serif;
-            --matcha-green: #5d8736;
-            --matcha-dark: #2c401a;
-            --matcha-light: #f1f5ec;
-            --tartan-white: rgba(255, 255, 255, 0.35);
-            --danger-red: #dc3545;
-        }
+        <style>
+            :root {
+                --heading-font: "Playfair Display", serif;
+                --body-font: "Plus Jakarta Sans", sans-serif;
+                --matcha-green: #5d8736;
+                --matcha-dark: #2c401a;
+                --matcha-light: #f1f5ec;
+                --tartan-white: rgba(255, 255, 255, 0.35);
+                --danger-red: #dc3545;
+            }
 
-        body {
-            font-family: var(--body-font);
-            background-color: #fdfdfb;
-            color: #333;
-            line-height: 1.6;
-        }
+            body {
+                font-family: var(--body-font);
+                background-color: #fdfdfb;
+                color: #333;
+                line-height: 1.6;
+            }
 
-        .brand-banner {
-            position: relative;
-            height: 280px;
-            width: 100%;
-            background-color: var(--matcha-green);
-            background-image: repeating-linear-gradient(45deg, transparent, transparent 35px, var(--tartan-white) 35px, var(--tartan-white) 70px),
-                repeating-linear-gradient(-45deg, transparent, transparent 35px, var(--tartan-white) 35px, var(--tartan-white) 70px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: inset 0 0 120px rgba(0, 0, 0, 0.25);
-            margin-bottom: 2rem;
-            cursor: pointer;
-        }
+            .brand-banner {
+                position: relative;
+                height: 280px;
+                width: 100%;
+                background-color: var(--matcha-green);
+                background-image: repeating-linear-gradient(45deg, transparent, transparent 35px, var(--tartan-white) 35px, var(--tartan-white) 70px),
+                    repeating-linear-gradient(-45deg, transparent, transparent 35px, var(--tartan-white) 35px, var(--tartan-white) 70px);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                box-shadow: inset 0 0 120px rgba(0, 0, 0, 0.25);
+                margin-bottom: 2rem;
+                cursor: pointer;
+            }
 
-        .main-brand-title {
-            font-family: var(--heading-font);
-            font-weight: 800;
-            font-size: calc(2.2rem + 2vw);
-            color: #ffffff;
-            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            pointer-events: none;
-        }
+            .main-brand-title {
+                font-family: var(--heading-font);
+                font-weight: 800;
+                font-size: calc(2.2rem + 2vw);
+                color: #ffffff;
+                text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+                pointer-events: none;
+            }
 
-        .hero-section { padding: 40px 0; }
+            .hero-section {
+                padding: 40px 0;
+            }
 
-        .hero-image {
-            width: 100%;
-            border-radius: 1.5rem;
-            box-shadow: 0 30px 60px -15px rgba(44, 64, 26, 0.2);
-        }
+            .hero-image {
+                width: 100%;
+                border-radius: 1.5rem;
+                box-shadow: 0 30px 60px -15px rgba(44, 64, 26, 0.2);
+            }
 
-        .nav-pills .nav-link {
-            border-radius: 50px;
-            padding: 8px 25px;
-            margin: 0 5px;
-            background-color: #fff;
-            color: var(--matcha-dark);
-            border: 1px solid #dee2e6;
-        }
+            .nav-pills .nav-link {
+                border-radius: 50px;
+                padding: 8px 25px;
+                margin: 0 5px;
+                background-color: #fff;
+                color: var(--matcha-dark);
+                border: 1px solid #dee2e6;
+            }
 
-        .nav-pills .nav-link.active {
-            background-color: var(--matcha-green);
-            color: white;
-            border-color: var(--matcha-green);
-        }
+            .nav-pills .nav-link.active {
+                background-color: var(--matcha-green);
+                color: white;
+                border-color: var(--matcha-green);
+            }
 
-        .image-container {
-            position: relative;
-            width: 100%;
-            padding-top: 100%;
-            overflow: hidden;
-            border-radius: 15px;
-            background-color: #eee;
-            cursor: pointer;
-        }
+            .image-container {
+                position: relative;
+                width: 100%;
+                padding-top: 100%;
+                overflow: hidden;
+                border-radius: 15px;
+                background-color: #eee;
+                cursor: pointer;
+            }
 
-        .image-container img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
+            .image-container img {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.3s ease;
+            }
 
-        .gallery-item:hover img { transform: scale(1.05); }
+            .gallery-item:hover img {
+                transform: scale(1.05);
+            }
 
-        .item-actions {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            display: none; /* Only visible in admin mode */
-            gap: 5px;
-            z-index: 10;
-        }
+            .item-actions {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                display: none;
+                /* Only visible in admin mode */
+                gap: 5px;
+                z-index: 10;
+            }
 
-        .btn-action {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            border: none;
-            background: white;
-            color: var(--matcha-dark);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8rem;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        }
+            .btn-action {
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+                border: none;
+                background: white;
+                color: var(--matcha-dark);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 0.8rem;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            }
 
-        .btn-delete-item:hover { background: var(--danger-red); color: white; }
-        .btn-edit-item:hover { background: var(--matcha-green); color: white; }
+            .btn-delete-item:hover {
+                background: var(--danger-red);
+                color: white;
+            }
 
-        #openAddModal {
-            display: none; /* Only visible in admin mode */
-            background-color: var(--matcha-dark);
-            color: white;
-            border-radius: 50px;
-            padding: 8px 25px;
-            font-weight: 600;
-        }
+            .btn-edit-item:hover {
+                background: var(--matcha-green);
+                color: white;
+            }
 
-        /* Pagination Styling */
-        .pagination .page-link {
-            color: var(--matcha-dark);
-            border: 1px solid #dee2e6;
-            margin: 0 3px;
-            border-radius: 8px;
-        }
+            #openAddModal {
+                display: none;
+                /* Only visible in admin mode */
+                background-color: var(--matcha-dark);
+                color: white;
+                border-radius: 50px;
+                padding: 8px 25px;
+                font-weight: 600;
+            }
 
-        .pagination .page-item.active .page-link {
-            background-color: var(--matcha-green);
-            border-color: var(--matcha-green);
-            color: white;
-        }
+            /* Pagination Styling */
+            .pagination .page-link {
+                color: var(--matcha-dark);
+                border: 1px solid #dee2e6;
+                margin: 0 3px;
+                border-radius: 8px;
+            }
 
-        /* ADMIN REVEAL CLASSES */
-        body.admin-active #openAddModal { display: block !important; }
-        body.admin-active .item-actions { display: flex !important; }
-    </style>
-</head>
+            .pagination .page-item.active .page-link {
+                background-color: var(--matcha-green);
+                border-color: var(--matcha-green);
+                color: white;
+            }
 
-<body>
-    <div class="brand-banner" id="adminBanner">
-        <h1 class="main-brand-title">Marie's Matcha Diaries</h1>
-    </div>
+            /* ADMIN REVEAL CLASSES */
+            body.admin-active #openAddModal {
+                display: block !important;
+            }
 
-    <div class="container hero-section">
-        <div class="row align-items-center mb-5">
-            <div class="col-lg-6">
-                <h2 class="fw-bold text-success">Hey there!</h2>
-                <p class="hero-subtitle">Welcome to my digital scrapbook of all things matcha. From hidden gems in the city to my own experimental whisking at home.</p>
-            </div>
-            <div class="col-lg-6">
-                <img src="https://images.unsplash.com/photo-1515823064-d6e0c04616a7?auto=format&fit=crop&w=800" alt="Matcha" class="hero-image">
-            </div>
+            body.admin-active .item-actions {
+                display: flex !important;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="brand-banner" id="adminBanner">
+            <h1 class="main-brand-title">Marie's Matcha Diaries</h1>
         </div>
 
-        <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-4 gap-3">
-            <ul class="nav nav-pills" id="categoryFilter">
-                <li class="nav-item"><button class="nav-link active" data-filter="all">All</button></li>
-                <li class="nav-item"><button class="nav-link" data-filter="Homemade Recipes">Homemade Recipes</button></li>
-                <li class="nav-item"><button class="nav-link" data-filter="Matcha Cafes">Matcha Cafes</button></li>
-                <li class="nav-item"><button class="nav-link" data-filter="Matcha Popups">Matcha Popups</button></li>
-            </ul>
-            <button class="btn" id="openAddModal">+ New Entry</button>
+        <div class="container hero-section">
+            <div class="row align-items-center mb-5">
+                <div class="col-lg-6">
+                    <h2 class="fw-bold text-success">Hey there!</h2>
+                    <p class="hero-subtitle">Welcome to my digital scrapbook of all things matcha. From hidden gems in
+                        the city to my own experimental whisking at home.</p>
+                </div>
+                <div class="col-lg-6">
+                    <img src="https://images.unsplash.com/photo-1515823064-d6e0c04616a7?auto=format&fit=crop&w=800"
+                        alt="Matcha" class="hero-image">
+                </div>
+            </div>
+
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-4 gap-3">
+                <ul class="nav nav-pills" id="categoryFilter">
+                    <li class="nav-item"><button class="nav-link active" data-filter="all">All</button></li>
+                    <li class="nav-item"><button class="nav-link" data-filter="Homemade Recipes">Homemade
+                            Recipes</button></li>
+                    <li class="nav-item"><button class="nav-link" data-filter="Matcha Cafes">Matcha Cafes</button></li>
+                    <li class="nav-item"><button class="nav-link" data-filter="Matcha Popups">Matcha Popups</button>
+                    </li>
+                </ul>
+                <button class="btn" id="openAddModal">+ New Entry</button>
+            </div>
+
+            <div class="row g-4" id="galleryGrid"></div>
+
+            <nav class="mt-5 mb-5">
+                <ul class="pagination justify-content-center" id="paginationControls"></ul>
+            </nav>
         </div>
 
-        <div class="row g-4" id="galleryGrid"></div>
-
-        <nav class="mt-5 mb-5">
-            <ul class="pagination justify-content-center" id="paginationControls"></ul>
-        </nav>
-    </div>
-
-    <div class="modal fade" id="imageDetailModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content border-0 overflow-hidden" style="border-radius: 20px;">
-                <div class="modal-body p-0">
-                    <div class="row g-0">
-                        <div class="col-md-7">
-                            <img src="" id="modalImage" class="img-fluid h-100" style="object-fit: cover; min-height: 400px;">
-                        </div>
-                        <div class="col-md-5 p-4 d-flex flex-column justify-content-center">
-                            <button type="button" class="btn-close position-absolute top-0 end-0 m-3" data-bs-dismiss="modal"></button>
-                            <span class="badge bg-success mb-2" id="modalCategory" style="width: fit-content;">Category</span>
-                            <h3 class="fw-bold" id="modalDisplayTitle">Title</h3>
-                            <p class="text-muted" id="modalDescription">Description</p>
+        <div class="modal fade" id="imageDetailModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content border-0 overflow-hidden" style="border-radius: 20px;">
+                    <div class="modal-body p-0">
+                        <div class="row g-0">
+                            <div class="col-md-7">
+                                <img src="" id="modalImage" class="img-fluid h-100"
+                                    style="object-fit: cover; min-height: 400px;">
+                            </div>
+                            <div class="col-md-5 p-4 d-flex flex-column justify-content-center">
+                                <button type="button" class="btn-close position-absolute top-0 end-0 m-3"
+                                    data-bs-dismiss="modal"></button>
+                                <span class="badge bg-success mb-2" id="modalCategory"
+                                    style="width: fit-content;">Category</span>
+                                <h3 class="fw-bold" id="modalDisplayTitle">Title</h3>
+                                <p class="text-muted" id="modalDescription">Description</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="modal fade" id="entryFormModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content" style="border-radius: 20px;">
-                <div class="modal-header border-0 pb-0">
-                    <h5 class="modal-title fw-bold" id="formModalTitle">New Matcha Entry</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="entryForm">
-                        <div class="mb-3">
-                            <label class="form-label small fw-bold">Image URL</label>
-                            <input type="url" class="form-control" id="entryImageUrl" required>
-                            <div class="form-text">Paste a direct image link or a Google Drive share link.</div>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label small fw-bold">Title</label>
-                            <input type="text" class="form-control" id="entryTitle" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label small fw-bold">Category</label>
-                            <select class="form-select" id="entryCategory">
-                                <option value="Homemade Recipes">Homemade Recipes</option>
-                                <option value="Matcha Cafes">Matcha Cafes</option>
-                                <option value="Matcha Popups">Matcha Popups</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label small fw-bold">Description</label>
-                            <textarea class="form-control" id="entryDescription" rows="3"></textarea>
-                        </div>
-                        <div class="d-grid">
-                            <button type="submit" class="btn btn-success rounded-pill py-2 fw-bold" id="submitBtn">Save Entry</button>
-                        </div>
-                    </form>
+        <div class="modal fade" id="entryFormModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content" style="border-radius: 20px;">
+                    <div class="modal-header border-0 pb-0">
+                        <h5 class="modal-title fw-bold" id="formModalTitle">New Matcha Entry</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="entryForm">
+                            <div class="mb-3">
+                                <label class="form-label small fw-bold">Image URL</label>
+                                <input type="url" class="form-control" id="entryImageUrl" required>
+                                <div class="form-text">Paste a direct image link or a Google Drive share link.</div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label small fw-bold">Title</label>
+                                <input type="text" class="form-control" id="entryTitle" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label small fw-bold">Category</label>
+                                <select class="form-select" id="entryCategory">
+                                    <option value="Homemade Recipes">Homemade Recipes</option>
+                                    <option value="Matcha Cafes">Matcha Cafes</option>
+                                    <option value="Matcha Popups">Matcha Popups</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label small fw-bold">Description</label>
+                                <textarea class="form-control" id="entryDescription" rows="3"></textarea>
+                            </div>
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-success rounded-pill py-2 fw-bold"
+                                    id="submitBtn">Save Entry</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-        import { getFirestore, collection, addDoc, getDocs, updateDoc, deleteDoc, doc, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+        <script type="module">
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+            import { getFirestore, collection, addDoc, getDocs, updateDoc, deleteDoc, doc, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-        const firebaseConfig = {
-            apiKey: "AIzaSyAfqjx6pbufGSM82odtURUZ3jPwCgt5DpM",
-            authDomain: "matcha-diary.firebaseapp.com",
-            projectId: "matcha-diary",
-            storageBucket: "matcha-diary.firebasestorage.app",
-            messagingSenderId: "607783005758",
-            appId: "1:607783005758:web:f06abeb4024e25c6b82b6f",
-            measurementId: "G-KHN4RH3K60"
-        };
+            const firebaseConfig = {
+                apiKey: "AIzaSyAfqjx6pbufGSM82odtURUZ3jPwCgt5DpM",
+                authDomain: "matcha-diary.firebaseapp.com",
+                projectId: "matcha-diary",
+                storageBucket: "matcha-diary.firebasestorage.app",
+                messagingSenderId: "607783005758",
+                appId: "1:607783005758:web:f06abeb4024e25c6b82b6f",
+                measurementId: "G-KHN4RH3K60"
+            };
 
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-        const entriesCol = collection(db, "matcha_entries");
+            const app = initializeApp(firebaseConfig);
+            const db = getFirestore(app);
+            const entriesCol = collection(db, "matcha_entries");
 
-        // UI Helpers
-        const galleryGrid = document.getElementById("galleryGrid");
-        const entryForm = document.getElementById("entryForm");
-        const formModal = new bootstrap.Modal(document.getElementById("entryFormModal"));
-        const viewModal = new bootstrap.Modal(document.getElementById("imageDetailModal"));
+            // UI Helpers
+            const galleryGrid = document.getElementById("galleryGrid");
+            const entryForm = document.getElementById("entryForm");
+            const formModal = new bootstrap.Modal(document.getElementById("entryFormModal"));
+            const viewModal = new bootstrap.Modal(document.getElementById("imageDetailModal"));
 
-        let allEntries = [];
-        let currentFilter = 'all';
-        let editingId = null;
+            let allEntries = [];
+            let currentFilter = 'all';
+            let editingId = null;
 
-        // 1. DRIVE LINK CONVERTER
-        const formatImageUrl = (url) => {
-            if (url.includes('drive.google.com')) {
-                const match = url.match(/\/d\/([^\/]+)/);
-                if (match && match[1]) return `https://lh3.googleusercontent.com/d/$${match[1]}`;
-            }
-            return url;
-        };
+            // 1. DRIVE LINK CONVERTER
+            const formatImageUrl = (url) => {
+                if (url.includes('drive.google.com')) {
+                    const match = url.match(/\/d\/([^\/]+)/);
+                    if (match && match[1]) {
+                        // Using the thumbnail format which is more reliable for web display
+                        return `https://drive.google.com/thumbnail?id=${match[1]}&sz=w1000`;
+                    }
+                }
+                return url;
+            };
 
-        // 2. FETCH AND RENDER
-        window.fetchEntries = async () => {
-            try {
-                const q = query(entriesCol, orderBy("timestamp", "desc"));
-                const snapshot = await getDocs(q);
-                allEntries = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-                renderGallery();
-            } catch (err) { console.error("Database error:", err); }
-        };
+            // 2. FETCH AND RENDER
+            window.fetchEntries = async () => {
+                try {
+                    const q = query(entriesCol, orderBy("timestamp", "desc"));
+                    const snapshot = await getDocs(q);
+                    allEntries = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                    renderGallery();
+                } catch (err) { console.error("Database error:", err); }
+            };
 
-        const renderGallery = () => {
-            const filtered = allEntries.filter(e => currentFilter === 'all' || e.category === currentFilter);
-            galleryGrid.innerHTML = filtered.map(entry => `
+            const renderGallery = () => {
+                const filtered = allEntries.filter(e => currentFilter === 'all' || e.category === currentFilter);
+                galleryGrid.innerHTML = filtered.map(entry => `
                 <div class="col-6 col-md-4 col-lg-3 gallery-item">
                     <div class="image-container shadow-sm">
                         <img src="${entry.url}" onclick="showDetail('${entry.id}')">
@@ -306,110 +337,110 @@
                     <p class="small fw-bold mt-2 text-truncate">${entry.title}</p>
                 </div>
             `).join('');
-        };
-
-        // 3. GLOBAL ACTIONS (Exposed to window)
-        window.showDetail = (id) => {
-            const item = allEntries.find(e => e.id === id);
-            if (!item) return;
-            document.getElementById("modalImage").src = item.url;
-            document.getElementById("modalDisplayTitle").innerText = item.title;
-            document.getElementById("modalCategory").innerText = item.category;
-            document.getElementById("modalDescription").innerText = item.desc || "";
-            viewModal.show();
-        };
-
-        window.editEntry = (id) => {
-            const item = allEntries.find(e => e.id === id);
-            if (!item) return;
-            editingId = id;
-            document.getElementById("entryImageUrl").value = item.url;
-            document.getElementById("entryTitle").value = item.title;
-            document.getElementById("entryCategory").value = item.category;
-            document.getElementById("entryDescription").value = item.desc || "";
-            document.getElementById("formModalTitle").innerText = "Edit Entry";
-            formModal.show();
-        };
-
-        window.deleteEntry = async (id) => {
-            if (confirm("Delete this entry forever?")) {
-                await deleteDoc(doc(db, "matcha_entries", id));
-                fetchEntries();
-            }
-        };
-
-        // 4. FORM LOGIC
-        entryForm.onsubmit = async (e) => {
-            e.preventDefault();
-            const btn = document.getElementById("submitBtn");
-            btn.disabled = true;
-
-            const data = {
-                url: formatImageUrl(document.getElementById("entryImageUrl").value),
-                title: document.getElementById("entryTitle").value,
-                category: document.getElementById("entryCategory").value,
-                desc: document.getElementById("entryDescription").value,
-                timestamp: serverTimestamp()
             };
 
-            try {
-                if (editingId) {
-                    await updateDoc(doc(db, "matcha_entries", editingId), data);
-                } else {
-                    await addDoc(entriesCol, data);
+            // 3. GLOBAL ACTIONS (Exposed to window)
+            window.showDetail = (id) => {
+                const item = allEntries.find(e => e.id === id);
+                if (!item) return;
+                document.getElementById("modalImage").src = item.url;
+                document.getElementById("modalDisplayTitle").innerText = item.title;
+                document.getElementById("modalCategory").innerText = item.category;
+                document.getElementById("modalDescription").innerText = item.desc || "";
+                viewModal.show();
+            };
+
+            window.editEntry = (id) => {
+                const item = allEntries.find(e => e.id === id);
+                if (!item) return;
+                editingId = id;
+                document.getElementById("entryImageUrl").value = item.url;
+                document.getElementById("entryTitle").value = item.title;
+                document.getElementById("entryCategory").value = item.category;
+                document.getElementById("entryDescription").value = item.desc || "";
+                document.getElementById("formModalTitle").innerText = "Edit Entry";
+                formModal.show();
+            };
+
+            window.deleteEntry = async (id) => {
+                if (confirm("Delete this entry forever?")) {
+                    await deleteDoc(doc(db, "matcha_entries", id));
+                    fetchEntries();
                 }
-                formModal.hide();
-                entryForm.reset();
-                fetchEntries();
-            } catch (err) { alert("Save failed: " + err.message); }
-            finally { btn.disabled = false; }
-        };
-
-        document.getElementById("openAddModal").onclick = () => {
-            editingId = null;
-            entryForm.reset();
-            document.getElementById("formModalTitle").innerText = "New Matcha Entry";
-            formModal.show();
-        };
-
-        // 5. FILTERING
-        document.querySelectorAll("#categoryFilter .nav-link").forEach(btn => {
-            btn.onclick = () => {
-                document.querySelectorAll("#categoryFilter .nav-link").forEach(b => b.classList.remove("active"));
-                btn.classList.add("active");
-                currentFilter = btn.dataset.filter;
-                renderGallery();
             };
-        });
 
-        // 6. ADMIN TRIGGER (SECRET WORD)
-        let buffer = "";
-        const SECRET = "matcha";
-        document.addEventListener("keydown", (e) => {
-            if (!e.key) return;
-            buffer = (buffer + e.key.toLowerCase()).slice(-SECRET.length);
-            if (buffer === SECRET) {
-                document.body.classList.add("admin-active");
-                alert("Admin Access Granted");
-            }
-        });
+            // 4. FORM LOGIC
+            entryForm.onsubmit = async (e) => {
+                e.preventDefault();
+                const btn = document.getElementById("submitBtn");
+                btn.disabled = true;
 
-        // MOBILE LONG PRESS ADMIN
-        let pressTimer;
-        const banner = document.getElementById("adminBanner");
-        banner.addEventListener("touchstart", () => {
-            pressTimer = window.setTimeout(() => {
-                if (prompt("Secret?") === "lush") {
+                const data = {
+                    url: formatImageUrl(document.getElementById("entryImageUrl").value),
+                    title: document.getElementById("entryTitle").value,
+                    category: document.getElementById("entryCategory").value,
+                    desc: document.getElementById("entryDescription").value,
+                    timestamp: serverTimestamp()
+                };
+
+                try {
+                    if (editingId) {
+                        await updateDoc(doc(db, "matcha_entries", editingId), data);
+                    } else {
+                        await addDoc(entriesCol, data);
+                    }
+                    formModal.hide();
+                    entryForm.reset();
+                    fetchEntries();
+                } catch (err) { alert("Save failed: " + err.message); }
+                finally { btn.disabled = false; }
+            };
+
+            document.getElementById("openAddModal").onclick = () => {
+                editingId = null;
+                entryForm.reset();
+                document.getElementById("formModalTitle").innerText = "New Matcha Entry";
+                formModal.show();
+            };
+
+            // 5. FILTERING
+            document.querySelectorAll("#categoryFilter .nav-link").forEach(btn => {
+                btn.onclick = () => {
+                    document.querySelectorAll("#categoryFilter .nav-link").forEach(b => b.classList.remove("active"));
+                    btn.classList.add("active");
+                    currentFilter = btn.dataset.filter;
+                    renderGallery();
+                };
+            });
+
+            // 6. ADMIN TRIGGER (SECRET WORD)
+            let buffer = "";
+            const SECRET = "matcha";
+            document.addEventListener("keydown", (e) => {
+                if (!e.key) return;
+                buffer = (buffer + e.key.toLowerCase()).slice(-SECRET.length);
+                if (buffer === SECRET) {
                     document.body.classList.add("admin-active");
                     alert("Admin Access Granted");
                 }
-            }, 3000);
-        });
-        banner.addEventListener("touchend", () => clearTimeout(pressTimer));
+            });
 
-        // Start
-        fetchEntries();
-    </script>
-</body>
+            // MOBILE LONG PRESS ADMIN
+            let pressTimer;
+            const banner = document.getElementById("adminBanner");
+            banner.addEventListener("touchstart", () => {
+                pressTimer = window.setTimeout(() => {
+                    if (prompt("Secret?") === "lush") {
+                        document.body.classList.add("admin-active");
+                        alert("Admin Access Granted");
+                    }
+                }, 3000);
+            });
+            banner.addEventListener("touchend", () => clearTimeout(pressTimer));
+
+            // Start
+            fetchEntries();
+        </script>
+    </body>
 
 </html>
