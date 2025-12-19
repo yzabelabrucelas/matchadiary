@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Marie's Matcha Diaries</title>
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link
+            href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap"
+            rel="stylesheet">
+
+        <style>
+            :root {
+                --heading-font: "Playfair Display", serif;
+                --body-font: "Plus Jakarta Sans", sans-serif;
+                --matcha-green: #5d8736;
+                --matcha-dark: #2c401a;
+                --matcha-light: #f1f5ec;
+                --tartan-white: rgba(255, 255, 255, 0.35);
+                --danger-red: #dc3545;
+            }
+
+            body {
+                font-family: var(--body-font);
+                background-color: #fdfdfb;
+                color: #333;
+                line-height: 1.6;
+            }
+
+            .brand-banner {
+                position: relative;
+                height: 280px;
+                width: 100%;
+                background-color: var(--matcha-green);
+                background-image: repeating-linear-gradient(45deg, transparent, transparent 35px, var(--tartan-white) 35px, var(--tartan-white) 70px),
+                    repeating-linear-gradient(-45deg, transparent, transparent 35px, var(--tartan-white) 35px, var(--tartan-white) 70px);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                box-shadow: inset 0 0 120px rgba(0, 0, 0, 0.25);
+                margin-bottom: 2rem;
+            }
+
+            .main-brand-title {
+                font-family: var(--heading-font);
+                font-weight: 800;
+                font-size: calc(2.2rem + 2vw);
+                color: #ffffff;
+                text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            }
+
+            .hero-section {
+                padding: 40px 0;
+            }
+
+            .hero-image-container {
+                position: relative;
+            }
+
+            .hero-image {
+                width: 100%;
+                border-radius: 1.5rem;
+                box-shadow: 0 30px 60px -15px rgba(44, 64, 26, 0.2);
+            }
+
+            /* Gallery Styles */
+            .nav-pills .nav-link {
+                border-radius: 50px;
+                padding: 8px 25px;
+                margin: 0 5px;
+                background-color: #fff;
+                color: var(--matcha-dark);
+                border: 1px solid #dee2e6;
+            }
+
+            .nav-pills .nav-link.active {
+                background-color: var(--matcha-green);
+                color: white;
+                border-color: var(--matcha-green);
+            }
+
+            .image-container {
+                position: relative;
+                width: 100%;
+                padding-top: 100%;
+                overflow: hidden;
+                border-radius: 15px;
+                background-color: #eee;
+                cursor: pointer;
+            }
+
+            .image-container img {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.3s ease;
+            }
+
+            .gallery-item:hover img {
+                transform: scale(1.05);
+            }
+
+            .item-actions {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                display: flex;
+                gap: 5px;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+                z-index: 10;
+            }
+
+            .gallery-item:hover .item-actions {
+                opacity: 1;
+            }
+
+            .btn-action {
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+                border: none;
+                background: white;
+                color: var(--matcha-dark);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 0.8rem;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            }
+
+            .btn-delete-item:hover {
+                background: var(--danger-red);
+                color: white;
+            }
+
+            .btn-edit-item:hover {
+                background: var(--matcha-green);
+                color: white;
+            }
+
+            .gallery-item.hidden {
+                display: none;
+            }
+
+            #modalImage {
+                width: 100%;
+                border-radius: 15px;
+                object-fit: cover;
+            }
+
+            .btn-add-entry {
+                background-color: var(--matcha-dark);
+                color: white;
+                border-radius: 50px;
+                padding: 8px 25px;
+                font-weight: 600;
+            }
+
+            .btn-add-entry:hover {
+                background-color: var(--matcha-green);
+                color: white;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="brand-banner">
+            <h1 class="main-brand-title">Marie's Matcha Diaries</h1>
+        </div>
+
+        <div class="container hero-section">
+            <div class="row align-items-center mb-5">
+                <div class="col-lg-6">
+                    <h2 class="fw-bold text-success">Hey there!</h2>
+                    <p class="hero-subtitle">Welcome to my digital scrapbook of all things matcha. From hidden gems in
+                        the city to my own experimental whisking at home.</p>
+                </div>
+                <div class="col-lg-6 hero-image-container">
+                    <img src="https://images.unsplash.com/photo-1515823064-d6e0c04616a7?auto=format&fit=crop&w=800"
+                        alt="Matcha" class="hero-image">
+                </div>
+            </div>
+
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-4 gap-3">
+                <ul class="nav nav-pills" id="categoryFilter">
+                    <li class="nav-item"><button class="nav-link active" data-filter="all">All</button></li>
+                    <li class="nav-item"><button class="nav-link" data-filter="homemade">Homemade</button></li>
+                    <li class="nav-item"><button class="nav-link" data-filter="cafes">Cafes</button></li>
+                    <li class="nav-item"><button class="nav-link" data-filter="popups">Popups</button></li>
+                </ul>
+                <button class="btn btn-add-entry" id="openAddModal">
+                    + New Entry
+                </button>
+            </div>
+
+            <div class="row g-4" id="galleryGrid">
+                <!-- Items will be loaded here from LocalStorage -->
+            </div>
+        </div>
+
+        <!-- VIEW MODAL -->
+        <div class="modal fade" id="imageDetailModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content border-0 overflow-hidden" style="border-radius: 20px;">
+                    <div class="modal-body p-0">
+                        <div class="row g-0">
+                            <div class="col-md-7">
+                                <img src="" id="modalImage" class="img-fluid h-100"
+                                    style="object-fit: cover; min-height: 400px;">
+                            </div>
+                            <div class="col-md-5 p-4 d-flex flex-column justify-content-center">
+                                <button type="button" class="btn-close position-absolute top-0 end-0 m-3"
+                                    data-bs-dismiss="modal"></button>
+                                <span class="badge bg-success mb-2" id="modalCategory"
+                                    style="width: fit-content;">Category</span>
+                                <h3 class="fw-bold" id="modalDisplayTitle">Title</h3>
+                                <p class="text-muted" id="modalDescription">Description</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ADD/EDIT FORM MODAL -->
+        <div class="modal fade" id="entryFormModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content" style="border-radius: 20px;">
+                    <div class="modal-header border-0 pb-0">
+                        <h5 class="modal-title fw-bold" id="formModalTitle">New Matcha Entry</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="entryForm">
+                            <input type="hidden" id="editItemId">
+                            <div class="mb-3">
+                                <label class="form-label small fw-bold">Image URL</label>
+                                <input type="url" class="form-control" id="entryImageUrl" placeholder="https://..."
+                                    required>
+                                <div class="form-text">Tip: Direct links and Google Drive "Share" links are supported.
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label small fw-bold">Title</label>
+                                <input type="text" class="form-control" id="entryTitle"
+                                    placeholder="e.g. Blue Bottle Matcha" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label small fw-bold">Category</label>
+                                <select class="form-select" id="entryCategory">
+                                    <option value="homemade">Homemade</option>
+                                    <option value="cafes">Cafes</option>
+                                    <option value="popups">Popups</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label small fw-bold">Description</label>
+                                <textarea class="form-control" id="entryDescription" rows="3"
+                                    placeholder="Tell the story..."></textarea>
+                            </div>
+                            <div class="d-grid">
+                                <button type="submit"
+                                    class="btn btn-dark-custom btn-success rounded-pill py-2 fw-bold">Save
+                                    Entry</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                const galleryGrid = document.getElementById("galleryGrid");
+                const entryForm = document.getElementById("entryForm");
+                const categoryButtons = document.querySelectorAll("#categoryFilter .nav-link");
+
+                const viewModal = new bootstrap.Modal(document.getElementById("imageDetailModal"));
+                const formModal = new bootstrap.Modal(document.getElementById("entryFormModal"));
+
+                let editingElementId = null;
+
+                // Default data if storage is empty
+                const defaultData = [
+                    {
+                        id: 'default-1',
+                        url: 'https://images.unsplash.com/photo-1582722872445-44ad5c78a9dd?auto=format&fit=crop&w=500',
+                        title: 'Morning Whisk',
+                        category: 'homemade',
+                        desc: 'Using ceremonial grade Uji matcha with oat milk.'
+                    }
+                ];
+
+                /**
+                 * Helper to convert Google Drive "Share" links to Direct Image URLs
+                 */
+                const formatImageUrl = (url) => {
+                    if (url.includes('drive.google.com')) {
+                        const regex = /\/d\/([^\/]+)/;
+                        const match = url.match(regex);
+                        if (match && match[1]) {
+                            return `https://lh3.googleusercontent.com/u/0/d/${match[1]}`;
+                        }
+                    }
+                    return url;
+                };
+
+                // LocalStorage Handlers
+                const getEntries = () => {
+                    const stored = localStorage.getItem('matcha_entries');
+                    return stored ? JSON.parse(stored) : defaultData;
+                };
+
+                const saveEntries = (entries) => {
+                    localStorage.setItem('matcha_entries', JSON.stringify(entries));
+                };
+
+                const renderGallery = () => {
+                    const entries = getEntries();
+                    galleryGrid.innerHTML = '';
+                    entries.forEach(entry => {
+                        const newItem = document.createElement("div");
+                        newItem.className = "col-6 col-md-4 col-lg-3 gallery-item";
+                        newItem.dataset.id = entry.id;
+                        newItem.dataset.category = entry.category;
+                        newItem.dataset.title = entry.title;
+                        newItem.dataset.desc = entry.desc;
+                        newItem.innerHTML = `
+                        <div class="image-container shadow-sm">
+                            <img src="${entry.url}" alt="${entry.title}">
+                            <div class="item-actions">
+                                <button class="btn-action btn-edit-item" title="Edit">✎</button>
+                                <button class="btn-action btn-delete-item" title="Delete">✕</button>
+                            </div>
+                        </div>
+                    `;
+                        galleryGrid.appendChild(newItem);
+                    });
+                };
+
+                // 1. FILTERING LOGIC
+                categoryButtons.forEach(btn => {
+                    btn.addEventListener("click", () => {
+                        categoryButtons.forEach(b => b.classList.remove("active"));
+                        btn.classList.add("active");
+                        const filter = btn.dataset.filter;
+
+                        document.querySelectorAll(".gallery-item").forEach(item => {
+                            if (filter === "all" || item.dataset.category === filter) {
+                                item.classList.remove("hidden");
+                            } else {
+                                item.classList.add("hidden");
+                            }
+                        });
+                    });
+                });
+
+                // 2. OPEN ADD MODAL
+                document.getElementById("openAddModal").addEventListener("click", () => {
+                    editingElementId = null;
+                    entryForm.reset();
+                    document.getElementById("formModalTitle").innerText = "New Matcha Entry";
+                    formModal.show();
+                });
+
+                // 3. CREATE / UPDATE LOGIC
+                entryForm.addEventListener("submit", (e) => {
+                    e.preventDefault();
+
+                    let rawUrl = document.getElementById("entryImageUrl").value;
+                    const url = formatImageUrl(rawUrl);
+                    const title = document.getElementById("entryTitle").value;
+                    const cat = document.getElementById("entryCategory").value;
+                    const desc = document.getElementById("entryDescription").value;
+
+                    let entries = getEntries();
+
+                    if (editingElementId) {
+                        // Update existing entry
+                        entries = entries.map(entry => {
+                            if (entry.id === editingElementId) {
+                                return { ...entry, url, title, category: cat, desc };
+                            }
+                            return entry;
+                        });
+                    } else {
+                        // Add new entry
+                        const newEntry = {
+                            id: Date.now().toString(),
+                            url,
+                            title,
+                            category: cat,
+                            desc
+                        };
+                        entries.push(newEntry);
+                    }
+
+                    saveEntries(entries);
+                    renderGallery();
+                    formModal.hide();
+                    entryForm.reset();
+                });
+
+                // 4. DELEGATED CLICK EVENTS (View, Edit, Delete)
+                galleryGrid.addEventListener("click", (e) => {
+                    const item = e.target.closest(".gallery-item");
+                    if (!item) return;
+
+                    const itemId = item.dataset.id;
+
+                    // Handle Delete
+                    if (e.target.classList.contains("btn-delete-item")) {
+                        e.stopPropagation();
+                        if (confirm("Are you sure you want to remove this entry?")) {
+                            let entries = getEntries();
+                            entries = entries.filter(entry => entry.id !== itemId);
+                            saveEntries(entries);
+                            renderGallery();
+                        }
+                        return;
+                    }
+
+                    // Handle Edit
+                    if (e.target.classList.contains("btn-edit-item")) {
+                        e.stopPropagation();
+                        editingElementId = itemId;
+                        const entries = getEntries();
+                        const entry = entries.find(en => en.id === itemId);
+
+                        document.getElementById("formModalTitle").innerText = "Edit Entry";
+                        document.getElementById("entryImageUrl").value = entry.url;
+                        document.getElementById("entryTitle").value = entry.title;
+                        document.getElementById("entryCategory").value = entry.category;
+                        document.getElementById("entryDescription").value = entry.desc;
+                        formModal.show();
+                        return;
+                    }
+
+                    // Handle View (Default click)
+                    document.getElementById("modalImage").src = item.querySelector("img").src;
+                    document.getElementById("modalDisplayTitle").innerText = item.dataset.title;
+                    document.getElementById("modalCategory").innerText = item.dataset.category;
+                    document.getElementById("modalDescription").innerText = item.dataset.desc;
+                    viewModal.show();
+                });
+
+                // Initial Load
+                renderGallery();
+            });
+        </script>
+    </body>
+
+</html>
